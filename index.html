@@ -1,66 +1,43 @@
 <!--A user must be able to add and delete a todo item, from the UI and from your storage.
 -Save each todo item as an object, with a key for the todo text and an "id" key that represents a random number you can use to search it by. So, you should have an array of objects that you're saving in localStorage.
--Hint: use JavaScript localStorage to store the todos. 
+-Hint: use JavaScript localStorage to store the todos.
 -Hint: To convert an array into the string representation, you'll need JSON stringify. To convert it back to an array, you'll need JSON parse.
 -Send me the project for review and get started on the next project.
-
 You can store your Todos in an array, but keep in mind that localStorage can only store strings, so that means you'll have to convert your array of todos into a string before you can store it. And when you retrieve it, you have to convert it from a string back to an array. Those are all things you can do with JavaScript, so make sure to look those up.
-
-Also, you can use JavaScript to add an "onclick" attribute to elements you're using JavaScript to create. This may be of note when thinking of how to delete the todo element. 
+Also, you can use JavaScript to add an "onclick" attribute to elements you're using JavaScript to create. This may be of note when thinking of how to delete the todo element.
 -----------------------------------------
-
 COMPONENTS NEEDED:
-items saved as objects, 
-	with a key (toDo text) 
-	and ID key 
-		which is a random number
-
-
+items saved as objects,
+    with a key (toDo text)
+    and ID key
+        which is a random number
 -----------------------------------------
-My NOTES:
-
-Needed:
-
-Add and delete an item from the UI, and from local storage
-
-means there must be a list on the screen that updates and removes items
-
-must look up JavaScript localStorage
-
-might benefit from looking up the JS Counter problem, to get the ability to add, delete items
-
-the localStorage will be saving an array
-
-means that items will need to be converted from array>>>string (uses JSON Stringify)
-and string>>>array (uses JSON parse
-to be retrieved
-
-also looks like we will be using Math.random, and thus, likely also Math.floor
-
-!-->
+-->
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" type="text/css" src="styles.css">
-<script href="index.js" type="text/javascript"></script>
-<title>To Do App</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" src="styles.css">
+    <script href="index.js" type="text/javascript"></script>
+    <title>To Do App</title>
 </head>
 <body>
- <h2 class="header">To-Do List</h2>
- <form id="toDo" autocomplete="off">
-  <input id="task" type="text" name="task" placeholder="Task"required/>
-   <p>To be completed by:</p><input type="date"name="date" id="date" required/>
- </form><br/>
- <button id="addToDo" onclick="addToDo()">Add</button>
-  <div>
-  <ul id="list">
-  </ul>
+    <h2 class="header">To-Do List</h2>
+    <form id="toDo" autocomplete="off">
+        <input id="task" type="text" name="task" placeholder="Task" required />
 
-  </div>
+    </form><br />
+    <button id="addToDo" onclick="addToDo()">Add</button>
+    <div>
+        <ul id="list">
+        </ul>
+
+    </div>
 </body>
 </html>
+
+
 
 
