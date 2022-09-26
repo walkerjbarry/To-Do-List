@@ -26,9 +26,8 @@ function addToDo() {
     removeBtn.classList.add('trash-btn');
     removeBtn.addEventListener("click", function () {
         removeBtn.remove(); newToDo.remove();
-        removeLocalToDo(task['id'])
+        removeLocalToDo(task)
     });/*Onclick.our button will remove the newToDo fromthe GUI, and from localStorage.*/
-
     toDoDiv.appendChild(removeBtn);
     task.value = ""; /*this will clear the input field for the next task input*/
 };
@@ -41,16 +40,23 @@ function addLocalToDo(task) {
         toDoText = JSON.parse(localStorage.getItem('toDoText'));
     }/*and if we DO have a todo array, we will return it as a parsed array*/
     toDoText.push(task);
-    localStorage.setItem(task, JSON.stringify(toDoText));
+
+    localStorage.setItem('toDoText', JSON.stringify(toDoText));
     /*and we will also push other new todos to local storage*/
 };
 
-function removeLocalToDo(taskId) {
-
-    let toDoText = localStorage.getItem(taskId);
-
-    if (toDoText !== null) {
-        let removedData = localStorage.removeItem(taskId);
+function removeLocalToDo(task) {
+    let toDoText;
+    if (localStorage.getItem('toDoText') !== null) {
+        toDoText = JSON.parse(localStorage.getItem('toDoText'));;
+        localStorage.removeItem(task);
+        localStorage.setItem('toDoText', JSON.stringify(toDoText))
     }
-};
+};/*working on step 3:
+  
+1.If you look at how you save data in localStorage, the "hey" you pass to the setItem method is what you want to reference your array of todos as, which means the information you should be saving inside of localStorage is the array of todos, not the individual task/todo item.
 
+2.Since it looks like "toDoText" is the key you're using for storing your array of toDoText, you need to fix the key you're saving it under to be the one you're using to "getItem" so it references the same information.
+
+3.Once you fix that, that means you have to update your delete to loop through the array you're saving in localStorage, so you can find and remove the todo object you're looking for by its id.
+*/
