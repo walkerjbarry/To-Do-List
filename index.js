@@ -46,12 +46,17 @@ function addLocalToDo(task) {
 };
 
 function removeLocalToDo(task) {
+
+    const toDoDiv = document.getElementById("list");
+
     let toDoText;
     if (localStorage.getItem('toDoText') !== null) {
         toDoText = JSON.parse(localStorage.getItem('toDoText'));;
-        localStorage.removeItem(task);
-        localStorage.setItem('toDoText', JSON.stringify(toDoText))
+
     }
+    const toDoIndex = toDoDiv.children[0];
+    toDoText.splice(toDoText.indexOf(toDoIndex), 1);
+    localStorage.setItem('toDoText', JSON.stringify(toDoText));/*This is a method I've tried, but it only removes the 0 index position.  I can't think of a way to say "remove (this) element from (this) index position, attached to (this) delete button."*/
 };/*working on step 3:
   
 1.If you look at how you save data in localStorage, the "hey" you pass to the setItem method is what you want to reference your array of todos as, which means the information you should be saving inside of localStorage is the array of todos, not the individual task/todo item.
