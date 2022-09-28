@@ -54,14 +54,7 @@ function removeLocalToDo(task) {
         toDoText = JSON.parse(localStorage.getItem('toDoText'));;
 
     }
-    const toDoIndex = toDoDiv.children[0];
-    toDoText.splice(toDoText.indexOf(toDoIndex), 1);
-    localStorage.setItem('toDoText', JSON.stringify(toDoText));/*This is a method I've tried, but it only removes the 0 index position.  I can't think of a way to say "remove (this) element from (this) index position, attached to (this) delete button."*/
-};/*working on step 3:
-  
-1.If you look at how you save data in localStorage, the "hey" you pass to the setItem method is what you want to reference your array of todos as, which means the information you should be saving inside of localStorage is the array of todos, not the individual task/todo item.
-
-2.Since it looks like "toDoText" is the key you're using for storing your array of toDoText, you need to fix the key you're saving it under to be the one you're using to "getItem" so it references the same information.
-
-3.Once you fix that, that means you have to update your delete to loop through the array you're saving in localStorage, so you can find and remove the todo object you're looking for by its id.
-*/
+    const toDoIndex = task.id;/*Creating this variable to be equal to the value we're looking to find, is how we can find the index position and remove it (via the splice() method in the next step)*/
+    toDoText.splice(toDoText.indexOf(toDoIndex), 1);/*Here we declare what element(s) we want to splice (toDoText.indexOf(toDoIndex)), and how many elements (1)*/
+    localStorage.setItem('toDoText', JSON.stringify(toDoText));//Here we reset the updated array in localStorage
+};
