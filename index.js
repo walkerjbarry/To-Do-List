@@ -8,7 +8,7 @@ function addToDo() {
     const toDo = document.getElementById("toDo");
 
     event.preventDefault();
-    document.addEventListener("DOMToDosLoaded", addLocalToDo(task['id']));
+    //document.addEventListener("DOMToDosLoaded", addLocalToDo(task));
     const toDoDiv = document.getElementById("list");
     const newToDo = document.createElement("li");
     toDoDiv.appendChild(newToDo);  /*here we append the element to whichever element we choose.  In this case, we are choosing to append the newly created list item to our newly created list element*/
@@ -19,7 +19,7 @@ function addToDo() {
 
     newToDo.classList.add('todo-item');  /**Here we are adding a class to the newly created html element.  This of course, will allow us to style our element. */
 
-    //addLocalToDo(task['id']);/*add todo to local storage*/
+    addLocalToDo(task);/*add todo to local storage*/
 
     const removeBtn = document.createElement('button');
     removeBtn.innerHTML = '<i class="fas fa-trash"></i>';/*here we use .innerHTML to add our button element as an icon, using the <i></i> element, and we use the class from the font - awesome cdn which we linked in the head of our html file.  Adding the button as an icon is obviously not critical, just a fun step for some styling.*/
@@ -30,6 +30,17 @@ function addToDo() {
     });/*Onclick.our button will remove the newToDo fromthe GUI, and from localStorage.*/
     toDoDiv.appendChild(removeBtn);
     task.value = ""; /*this will clear the input field for the next task input*/
+};
+function loadLocalToDo() {
+    let toDoText;
+    if (localStorage.getItem('toDoText') === null) {
+        toDoText = [];/*here we check if we already have a todo array, and if not, we will create an empty array*/
+    } else {
+        toDoText = JSON.parse(localStorage.getItem('toDoText'));
+    }/*and if we DO have a todo array, we will return it as a parsed array*/
+
+    localStorage.setItem('toDoText', JSON.stringify(toDoText));
+    /*and we will also push other new todos to local storage*/
 };
 
 function addLocalToDo(task) {
@@ -54,7 +65,8 @@ function removeLocalToDo(task) {
         toDoText = JSON.parse(localStorage.getItem('toDoText'));;
 
     }
-    const toDoIndex = task.id;/*Creating this variable to be equal to the value we're looking to find, is how we can find the index position and remove it (via the splice() method in the next step)*/
+    const toDoIndex = task['id'];/*Creating this variable to be equal to the value we're looking to find, is how we can find the index position and remove it (via the splice() method in the next step)*/
     toDoText.splice(toDoText.indexOf(toDoIndex), 1);/*Here we declare what element(s) we want to splice (toDoText.indexOf(toDoIndex)), and how many elements (1)*/
     localStorage.setItem('toDoText', JSON.stringify(toDoText));//Here we reset the updated array in localStorage
 };
+
