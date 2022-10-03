@@ -8,7 +8,6 @@ function addToDo() {
     const toDo = document.getElementById("toDo");
 
     event.preventDefault();
-    //document.addEventListener("DOMToDosLoaded", addLocalToDo(task));
     const toDoDiv = document.getElementById("list");
     const newToDo = document.createElement("li");
     toDoDiv.appendChild(newToDo);  /*here we append the element to whichever element we choose.  In this case, we are choosing to append the newly created list item to our newly created list element*/
