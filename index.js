@@ -65,7 +65,8 @@ function removeLocalToDo(task) {
 
     }
     const toDoIndex = task['id'];/*Creating this variable to be equal to the value we're looking to find, is how we can find the index position and remove it (via the splice() method in the next step)*/
-    toDoText.splice(toDoText.indexOf(toDoIndex), 1);/*Here we declare what element(s) we want to splice (toDoText.indexOf(toDoIndex)), and how many elements (1)*/
-    localStorage.setItem('toDoText', JSON.stringify(toDoText));//Here we reset the updated array in localStorage
-};
+    
+        toDoText.splice(toDoText.indexOf(toDoIndex), 1);/*Here we declare what element(s) we want to splice (toDoText.indexOf(toDoIndex)), and how many elements (1)*/
+        localStorage.setItem('toDoText', JSON.stringify(toDoText));//Here we reset the updated array in localStorage
+    };
 
