@@ -58,7 +58,8 @@ if(localStorage.getItem('toDoText') !== null){
   /*Here we declare what element(s) we want to splice (i), and how many elements (1)*/
   localStorage.setItem('toDoText', JSON.stringify(toDoText));//Here we reset the updated array in localStorage
 };
-function loadLocalToDo(){
+function loadLocalToDo(){  /*This function will obtain the todos from local storage, and use them to poupulate the UI, and populte the local storage onload.  Code and notes notes are pasted from above code.*/
+
     let toDoText;  
   if(localStorage.getItem('toDoText') === null){
     toDoText = [];/*here we check if we already have a todo array, and if not, we will create an empty array*/
