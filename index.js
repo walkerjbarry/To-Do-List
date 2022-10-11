@@ -28,7 +28,6 @@ function addToDoToUI(task) {
     });/*Onclick.our button will remove the newToDo fromthe GUI, and from localStorage.*/
     toDoDiv.appendChild(removeBtn);
     task.value = ""; /*this will clear the input field for the next task input*/
-
 };
 
 function addLocalToDo(task){
@@ -44,8 +43,8 @@ function addLocalToDo(task){
 /*and we will also push other new todos to local storage*/
 };
 
-
 function removeLocalToDo(task) {
+
     let toDoText;
     if (localStorage.getItem('toDoText') !== null) {
         toDoText = JSON.parse(localStorage.getItem('toDoText'));
@@ -59,6 +58,7 @@ function removeLocalToDo(task) {
     /*Here we declare what element(s) we want to splice (i), and how many elements (1)*/
     localStorage.setItem('toDoText', JSON.stringify(toDoText));//Here we reset the updated array in localStorage
 };
+
 function loadLocalToDo() {  /*This function will obtain the todos from local storage, and use them to poupulate the UI, and populte the local storage onload.  Code and notes notes are pasted from above code.*/
 
     let toDoText;
@@ -68,7 +68,7 @@ function loadLocalToDo() {  /*This function will obtain the todos from local sto
         toDoText = JSON.parse(localStorage.getItem('toDoText'));
     }
     toDoText.forEach(function (task) {
-       
+
         const toDo = document.getElementById("toDo");
         toDo.addEventListener("load", function (event) {
             event.preventDefault;
@@ -78,7 +78,7 @@ function loadLocalToDo() {  /*This function will obtain the todos from local sto
         toDoDiv.appendChild(newToDo);
 
         newToDo.innerText = task.name;
-        newToDo.classList.add('todo-item');  
+        newToDo.classList.add('todo-item');
 
         const removeBtn = document.createElement('button');
         removeBtn.innerHTML = '<i class="fas fa-trash"></i>';
@@ -88,7 +88,7 @@ function loadLocalToDo() {  /*This function will obtain the todos from local sto
             removeLocalToDo(task)
         });
         toDoDiv.appendChild(removeBtn);
-    })
+    });
 };
 
 
