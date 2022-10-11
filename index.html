@@ -11,7 +11,6 @@ items saved as objects,
     with a key (toDo text)
     and ID key
         which is a random number
------------------------------------------
 -->
 <!DOCTYPE html>
 <html>
@@ -26,11 +25,10 @@ items saved as objects,
 </head>
 <body onload="loadLocalToDo()">
     <h2 class="header">To-Do List</h2>
-    <form id="toDo" autocomplete="off">
+    <form id="toDo" autocomplete="off" onsubmit="addToDo()">
         <input id="task" type="text" name="task" placeholder="Task" required />
 
     </form><br />
-    <button id="addToDo" onclick="addToDo()">Add</button>
     <div>
         <ul id="list">
         </ul>
