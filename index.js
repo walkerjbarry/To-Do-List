@@ -3,8 +3,8 @@ function addToDo() {
         name: document.getElementById("task").value,
         id: Date.now(), /*Here we have chosen to use the Date.now()method to generate a unique id for our tasks.*/
     };
-    addLocalToDo(task);/*add todo to local storage*/
-    addToDoToUI(task);
+    addLocalToDo(task);//add todo to local storage
+    addToDoToUI(task);//populate the UI with todos from localStorage
 };
 
 function addToDoToUI(task) {
@@ -12,7 +12,6 @@ function addToDoToUI(task) {
     toDo.addEventListener("submit", function (event) {
         event.preventDefault;
     });
-    //document.addEventListener("DOMToDosLoaded", addLocalToDo(task['id']));
     const toDoDiv = document.getElementById("list");
     const newToDo = document.createElement("li");
     toDoDiv.appendChild(newToDo);  /*here we append the element to whichever element we choose.  In this case, we are choosing to append the newly created list item to our newly created list element*/
@@ -47,7 +46,6 @@ function addLocalToDo(task){
 
 
 function removeLocalToDo(task) {
-    //const toDoDiv = document.getElementById("list");
     let toDoText;
     if (localStorage.getItem('toDoText') !== null) {
         toDoText = JSON.parse(localStorage.getItem('toDoText'));
