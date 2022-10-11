@@ -1,0 +1,55 @@
+#list {
+    display: block;
+    text-align: center;
+    list-style: none; /*This removes the bullets*/
+}
+
+li {
+    width: 50%;
+    text-align: center;
+    font-family: tahoma;
+    font-weight: bold;
+}
+
+#toDo {
+    text-align: center;
+    font-weight: bold;
+}
+
+#addToDo {
+    text-align: center;
+    border-radius: 10%;
+    color: white;
+    background-color: #0F9B01;
+    align-items: center;
+    padding: 0.5rem;
+    margin: 0rem 3rem
+}
+
+.header {
+    text-align: center;
+    color: black;
+    font-size: 2.5em;
+    display:block;
+}
+
+.todo-item {
+    font-size: larger;
+}
+
+.trash-btn {
+    border-radius: 20%;
+    color: #0F9B01;
+    font-size: larger;
+}
+
+#task {
+    margin-right: .5em;
+    text-align: center;
+    font-weight: bold;
+}
+
+body {
+    font-family: heebo, tahoma, roboto, sans-serif;
+    background-image: linear-gradient(90deg,#D50000,#ffCA28); /*the 90 deg indicates that the gradient will be horizontal - default is 180, which is vertical*/
+}
