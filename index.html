@@ -25,10 +25,10 @@ items saved as objects,
 </head>
 <body onload="loadLocalToDo()">
     <h2 class="header">To-Do List</h2>
-    <form id="toDo" autocomplete="off" onsubmit="addToDo()">
-        <input id="task" type="text" name="task" placeholder="Task" required />
-
-    </form><br />
+    <form id="toDo" autocomplete="off" onsubmit="addToDo(event)">
+        <input id="task" type="text" name="task" placeholder="Enter Task" required />
+        <input type="submit" value="Submit"/>
+    </form>
     <div>
         <ul id="list">
         </ul>
