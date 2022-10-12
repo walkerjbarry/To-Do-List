@@ -7,12 +7,12 @@ function addToDo(event) {
     addLocalToDo(task);//add todo to local storage
     addToDoToUI(task);//populate the UI with todos from localStorage
 };
-//EVENT LISTENERS
 
+//EVENT LISTENERS
 removeBtn.addEventListener("click", function () {
     removeBtn.remove(); newToDo.remove();
     removeLocalToDo(task)
-    });/*Onclick.our button will remove the newToDo fromthe GUI, and from localStorage.*/
+});/*Onclick.our button will remove the newToDo fromthe GUI, and from localStorage.*/
 
 toDo.addEventListener("submit", function (event) {
         event.preventDefault;
