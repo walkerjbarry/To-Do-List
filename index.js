@@ -2,13 +2,15 @@ function addToDo(event) {
 
     event.preventDefault();
 
+    const toDoInput = document.getElementById("task");
     const task = {
-        name: document.getElementById("task").value,
+        name: toDoInput.value,
         id: Date.now(), /*Here we have chosen to use the Date.now()method to generate a unique id for our tasks.*/
     };
 
     addToUI(task);
     addLocalToDo(task);/*add todo to local storage*/
+    document.getElementById("task").value = ""; 
 };
 
 function addToUI(task) {
@@ -28,7 +30,7 @@ function addToUI(task) {
 
     });/*Onclick our button will remove the newToDo from the UI, and from localStorage.*/
     toDoDiv.appendChild(removeBtn);
-    /*this will clear the input field for the next task input*/
+    
 };
    
 function addLocalToDo(task) {
@@ -71,5 +73,4 @@ function loadLocalToDo() {  /*This function will obtain the todos from local sto
         addToUI(task);
     })
 };
-
 
