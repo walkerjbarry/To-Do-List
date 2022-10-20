@@ -50,7 +50,7 @@ function addLocalToDo(task) {
         toDoText = JSON.parse(localStorage.getItem('toDoText'));    /*and if we DO have a todo array, we will return it as a parsed array*/
     };   
     toDoText.push(task);  /*and we will also push other new todos to local storage*/
-    localStorage.setItem('toDoText', JSON.stringify(toDoText));
+    localStorage.setItem('toDoText', JSON.stringify(toDoText)); /*then we update (reset) local storage.*/
     
 };
 
@@ -67,7 +67,7 @@ function removeLocalToDo(task) {
         }
     };
     /*Here we declare what element(s) we want to splice (i), and how many elements (1)*/
-    localStorage.setItem('toDoText', JSON.stringify(toDoText));//Here we reset the updated array in localStorage
+    localStorage.setItem('toDoText', JSON.stringify(toDoText));/*then we update (reset) local storage.*/
 };
 function loadLocalToDo() {  /*This function will obtain the todos from local storage, and use them to populate the UI, and populate the local storage onload.  Code and notes are pasted from above code.*/
 
@@ -81,7 +81,7 @@ function loadLocalToDo() {  /*This function will obtain the todos from local sto
                 };
             });
         
-        localStorage.setItem('toDoText', JSON.stringify(toDoText));
+        localStorage.setItem('toDoText', JSON.stringify(toDoText)); /*then we update (reset) local storage.*/
         /*toDoText.forEach(function (task) {
         addToUI(task);
         })*/
@@ -93,3 +93,5 @@ function loadLocalToDo() {  /*This function will obtain the todos from local sto
        })
     };
 };
+
+
