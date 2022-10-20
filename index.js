@@ -1,23 +1,29 @@
+/*A user must be able to add and delete a todo item, from the UI and from your storage.
+-Save each todo item as an object, with a key for the todo text and an "id" key that represents a random number you can use to search it by. So, you should have an array of objects that you're saving in localStorage.
+-Hint: use JavaScript localStorage to store the todos.
+-Hint: To convert an array into the string representation, you'll need JSON stringify. To convert it back to an array, you'll need JSON parse.
+-Send me the project for review and get started on the next project.
+You can store your Todos in an array, but keep in mind that localStorage can only store strings, so that means you'll have to convert your array of todos into a string before you can store it. And when you retrieve it, you have to convert it from a string back to an array. Those are all things you can do with JavaScript, so make sure to look those up.
+Also, you can use JavaScript to add an "onclick" attribute to elements you're using JavaScript to create. This may be of note when thinking of how to delete the todo element.
+-----------------------------------------
+COMPONENTS NEEDED:
+items saved as objects,
+    with a key (toDo text)
+    and ID key
+        which is a random number*/
+
 function addToDo(event) {
 
     event.preventDefault();
-<<<<<<< HEAD
-=======
-
->>>>>>> 2220513d296350d650bb581166ed1a568a8a327f
     const toDoInput = document.getElementById("task");
     const task = {
-        name: toDoInput.value,
+        name: document.getElementById("task").value,
         id: Date.now(), /*Here we have chosen to use the Date.now()method to generate a unique id for our tasks.*/
     };
 
     addToUI(task);
     addLocalToDo(task);/*add todo to local storage*/
-<<<<<<< HEAD
     toDoInput.value = "";
-=======
-    document.getElementById("task").value = ""; 
->>>>>>> 2220513d296350d650bb581166ed1a568a8a327f
 };
 
 function addToUI(task) {
@@ -37,34 +43,20 @@ function addToUI(task) {
 
     });/*Onclick our button will remove the newToDo from the UI, and from localStorage.*/
     toDoDiv.appendChild(removeBtn);
-<<<<<<< HEAD
     /*this will clear the input field for the next task input*/
 };
 
-=======
-    
-};
-   
->>>>>>> 2220513d296350d650bb581166ed1a568a8a327f
 function addLocalToDo(task) {
 
     let toDoText;
     if (localStorage.getItem('toDoText') === null) {
         toDoText = [];/*here we check if we already have a todo array, and if not, we will create an empty array*/
     } else {
-<<<<<<< HEAD
         toDoText = JSON.parse(localStorage.getItem('toDoText'));    /*and if we DO have a todo array, we will return it as a parsed array*/
     };   
     toDoText.push(task);  /*and we will also push other new todos to local storage*/
     localStorage.setItem('toDoText', JSON.stringify(toDoText));
     
-=======
-        toDoText = JSON.parse(localStorage.getItem('toDoText'));
-    };/*and if we DO have a todo array, we will return it as a parsed array*/
-    toDoText.push(task);
-    localStorage.setItem('toDoText', JSON.stringify(toDoText));
-    /*and we will also push other new todos to local storage*/
->>>>>>> 2220513d296350d650bb581166ed1a568a8a327f
 };
 
 function removeLocalToDo(task) {
@@ -85,13 +77,12 @@ function removeLocalToDo(task) {
 function loadLocalToDo() {  /*This function will obtain the todos from local storage, and use them to populate the UI, and populate the local storage onload.  Code and notes are pasted from above code.*/
 
     let toDoText;
-<<<<<<< HEAD
     if (localStorage.getItem('toDoText') === null) {/*here we check if we already have a todo array, and if not, we will create an empty array*/
         toDoText = [];
         axios.get('https://jsonplaceholder.typicode.com/todos/') /*We then populate our array with the list from JSON Placeholder, using the AXIOS API to make the HTTP call*/
-            .then(response => {
-                for (let i = 0; i < 5; i++) {
-                    toDoText.push(response.data[i].title);
+            .then(response => {                                
+                for (let i = 0; i < 5; i++) {               //We use this for loop to grab the first 5 todos from the list 
+                    toDoText.push(response.data[i].title);      //...and to push them to our array
                 };
             });
         
@@ -107,15 +98,3 @@ function loadLocalToDo() {  /*This function will obtain the todos from local sto
        })
     };
 };
-=======
-    if (localStorage.getItem('toDoText') === null) {
-        toDoText = [];/*here we check if we already have a todo array, and if not, we will create an empty array*/
-    } else {
-        toDoText = JSON.parse(localStorage.getItem('toDoText'));
-    }
-    toDoText.forEach(function (task) {
-        addToUI(task);
-    })
-};
-
->>>>>>> 2220513d296350d650bb581166ed1a568a8a327f
