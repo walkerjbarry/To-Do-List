@@ -1,7 +1,7 @@
 function addToDo(event) {
 
     event.preventDefault();
-
+    const toDoInput = document.getElementById("task");
     const task = {
         name: document.getElementById("task").value,
         id: Date.now(), /*Here we have chosen to use the Date.now()method to generate a unique id for our tasks.*/
@@ -9,6 +9,7 @@ function addToDo(event) {
 
     addToUI(task);
     addLocalToDo(task);/*add todo to local storage*/
+    toDoInput.value = "";
 };
 
 function addToUI(task) {
@@ -26,22 +27,22 @@ function addToUI(task) {
         removeBtn.remove(); newToDo.remove();
         removeLocalToDo(task);
 
-    });/*Onclick our button will remove the newToDo fromthe UI, and from localStorage.*/
+    });/*Onclick our button will remove the newToDo from the UI, and from localStorage.*/
     toDoDiv.appendChild(removeBtn);
     /*this will clear the input field for the next task input*/
 };
-    
+
 function addLocalToDo(task) {
 
     let toDoText;
     if (localStorage.getItem('toDoText') === null) {
         toDoText = [];/*here we check if we already have a todo array, and if not, we will create an empty array*/
     } else {
-        toDoText = JSON.parse(localStorage.getItem('toDoText'));
-    };/*and if we DO have a todo array, we will return it as a parsed array*/
-    toDoText.push(task);
+        toDoText = JSON.parse(localStorage.getItem('toDoText'));    /*and if we DO have a todo array, we will return it as a parsed array*/
+    };   
+    toDoText.push(task);  /*and we will also push other new todos to local storage*/
     localStorage.setItem('toDoText', JSON.stringify(toDoText));
-    /*and we will also push other new todos to local storage*/
+    
 };
 
 function removeLocalToDo(task) {
@@ -51,7 +52,7 @@ function removeLocalToDo(task) {
         toDoText = JSON.parse(localStorage.getItem('toDoText'));
     };
     const toDoIndex = task.id;/*Creating this variable to be equal to the value we're looking to find, is how we can find the index position and remove it (via the splice() method in the next step)*/
-    for (let i = 0; i < toDoText.length; i++) {  /*This foor loop and the logic below is how we will iterate through our array to find our value (to be removed in this case)*/
+    for (let i = 0; i < toDoText.length; i++) {  /*This for loop and the logic below is how we will iterate through our array to find our value (to be removed in this case)*/
         if (toDoIndex === toDoText[i].id) {
             toDoText.splice(i, 1);
         }
@@ -59,17 +60,27 @@ function removeLocalToDo(task) {
     /*Here we declare what element(s) we want to splice (i), and how many elements (1)*/
     localStorage.setItem('toDoText', JSON.stringify(toDoText));//Here we reset the updated array in localStorage
 };
-function loadLocalToDo() {  /*This function will obtain the todos from local storage, and use them to poupulate the UI, and populate the local storage onload.  Code and notes are pasted from above code.*/
+function loadLocalToDo() {  /*This function will obtain the todos from local storage, and use them to populate the UI, and populate the local storage onload.  Code and notes are pasted from above code.*/
 
     let toDoText;
-    if (localStorage.getItem('toDoText') === null) {
-        toDoText = [];/*here we check if we already have a todo array, and if not, we will create an empty array*/
-    } else {
-        toDoText = JSON.parse(localStorage.getItem('toDoText'));
+    if (localStorage.getItem('toDoText') === null) {/*here we check if we already have a todo array, and if not, we will create an empty array*/
+        toDoText = [];
+        axios.get('https://jsonplaceholder.typicode.com/todos/') /*We then populate our array with the list from JSON Placeholder, using the AXIOS API to make the HTTP call*/
+            .then(response => {
+                for (let i = 0; i < 5; i++) {
+                    toDoText.push(response.data[i].title);
+                };
+            });
+        
+        localStorage.setItem('toDoText', JSON.stringify(toDoText));
+        /*toDoText.forEach(function (task) {
+        addToUI(task);
+        })*/
     }
+    else {
+        toDoText = JSON.parse(localStorage.getItem('toDoText')); /*If it was not null, meaning localStorage did have an array of todos, we populate the UI from that*/
     toDoText.forEach(function (task) {
         addToUI(task);
-    })
+       })
+    };
 };
-
-
