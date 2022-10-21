@@ -73,18 +73,21 @@ function loadLocalToDo() {  /*This function will obtain the todos from local sto
 
     let toDoText;
     if (localStorage.getItem('toDoText') === null) {/*here we check if we already have a todo array, and if not, we will create an empty array*/
-        toDoText = [];
-        axios.get('https://jsonplaceholder.typicode.com/todos/') /*We then populate our array with the list from JSON Placeholder, using the AXIOS API to make the HTTP call*/
-            .then(response => {                                
-                for (let i = 0; i < 5; i++) {               //We use this for loop to grab the first 5 todos from the list 
-                    toDoText.push(response.data[i].title);      //...and to push them to our array
-                };
-            });
         
-        localStorage.setItem('toDoText', JSON.stringify(toDoText)); /*then we update (reset) local storage.*/
-        /*toDoText.forEach(function (task) {
-        addToUI(task);
-        })*/
+        axios.get('https://jsonplaceholder.typicode.com/todos/') /*We then populate our array with the list from JSON Placeholder, using the AXIOS API to make the HTTP call*/
+            .then(response => {
+
+                for (let i = 0; i < 5; i++) {               //We use this for loop to grab the first 5 todos from the list 
+                    const apiToDo = response.data[i].title;
+                    toDoText.push(apiToDo);      //...and to push them to our array
+                };
+
+                localStorage.setItem('toDoText', JSON.stringify(toDoText));
+            });
+         /*then we update (reset) local storage.*/
+        toDoText.forEach(function (apiToDo) {
+            addToUI(apiToDo);
+        });
     }
     else {
         toDoText = JSON.parse(localStorage.getItem('toDoText')); /*If it was not null, meaning localStorage did have an array of todos, we populate the UI from that*/
@@ -92,6 +95,7 @@ function loadLocalToDo() {  /*This function will obtain the todos from local sto
         addToUI(task);
        })
     };
+    
 };
 
 
