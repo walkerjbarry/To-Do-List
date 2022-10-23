@@ -78,12 +78,12 @@ function loadLocalToDo() {  /*This function will obtain the todos from local sto
             .then(response => {
                 
                 for (let i = 0; i < 5; i++) {               //We use this for loop to grab the first 5 todos from the list 
-                    const apiToDo = {
+                    const apiToDo = {                       
                         name: response.data[i].title,
                         id: response.data[i].id,
                     };
                     const newToDo = document.createElement("li");
-                    newToDo.innerText = apiToDo.name;
+                    newToDo.innerText = apiToDo.name; /*Here we ensure that the todo that loads in the UI is the "title" property of the todo object in the api.*/
                     toDoText.push(apiToDo); //...and to push them to our array 
                     addToUI(apiToDo);//...then add them to the UI
                 };
