@@ -64,7 +64,7 @@ function removeLocalToDo(task) {
     for (let i = 0; i < toDoText.length; i++) {  /*This for loop and the logic below is how we will iterate through our array to find our value (to be removed in this case)*/
         if (toDoIndex === toDoText[i].id) {
             toDoText.splice(i, 1);
-        }
+        };
     };
     /*Here we declare what element(s) we want to splice (i), and how many elements (1)*/
     localStorage.setItem('toDoText', JSON.stringify(toDoText));/*then we update (reset) local storage.*/
@@ -80,7 +80,7 @@ function loadLocalToDo() {  /*This function will obtain the todos from local sto
                 for (let i = 0; i < 5; i++) {               //We use this for loop to grab the first 5 todos from the list 
                     const apiToDo = response.data[i].title;
                     toDoText.push(apiToDo); //...and to push them to our array
-                    addToUI(apiToDo);
+                    addToUI(apiToDo);//...then add them to the UI
                 };
 
                 localStorage.setItem('toDoText', JSON.stringify(toDoText));
